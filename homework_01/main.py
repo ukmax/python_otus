@@ -17,21 +17,34 @@ def power_numbers(*numbers):
     return new_list
 
 
-
 # filter types
 ODD = "odd"
 EVEN = "even"
 PRIME = "prime"
 
 
-def filter_numbers():
+def is_prime(n):
+    for i in range(2, n + 1):
+        if n % i == 0:
+            return n == i
+
+
+def filter_numbers(numbers, filter_types):
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
     (выбор производится передачей дополнительного аргумента)
 
     >>> filter_numbers([1, 2, 3], ODD)
-    <<< [1, 3]
+    [1, 3]
     >>> filter_numbers([2, 3, 4, 5], EVEN)
-    <<< [2, 4]
+    [2, 4]
     """
+
+    filtered_result = {
+        'odd': filter(lambda x: x % 2 == 1, numbers),
+        'even': filter(lambda x: x % 2 == 0, numbers),
+        'prime': filter(lambda x: is_prime(x), numbers),
+    }
+
+    return list(filtered_result[filter_types])
