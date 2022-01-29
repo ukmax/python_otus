@@ -40,11 +40,12 @@ def filter_numbers(numbers, filter_types):
     >>> filter_numbers([2, 3, 4, 5], EVEN)
     [2, 4]
     """
+    res = []
+    if filter_types == ODD:
+        res = filter(lambda x: x % 2 == 1, numbers)
+    if filter_types == EVEN:
+        res = filter(lambda x: x % 2 == 0, numbers)
+    if filter_types == PRIME:
+        res = filter(lambda x: is_prime(x), numbers)
 
-    filtered_result = {
-        'odd': filter(lambda x: x % 2 == 1, numbers),
-        'even': filter(lambda x: x % 2 == 0, numbers),
-        'prime': filter(lambda x: is_prime(x), numbers),
-    }
-
-    return list(filtered_result[filter_types])
+    return list(res)
