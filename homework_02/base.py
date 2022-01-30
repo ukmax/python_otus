@@ -1,15 +1,14 @@
-from pydantic import BaseModel
+from abc import ABC
 from homework_02.exceptions import LowFuelError, NotEnoughFuel
 
 
-class Vehicle(BaseModel):
-    weight: int = 1
-    started: bool = False
-    fuel: int = 0
-    fuel_consumption: int = 1
+class Vehicle(ABC):
+    weight = 1
+    started = False
+    fuel = 0
+    fuel_consumption = 1
 
     def __init__(self, weight, fuel, fuel_consumption):
-        super().__init__()
         self.weight = weight
         self.fuel = fuel
         self.fuel_consumption = fuel_consumption
