@@ -46,6 +46,6 @@ def filter_numbers(numbers, filter_types):
     if filter_types == EVEN:
         res = filter(lambda x: x % 2 == 0, numbers)
     if filter_types == PRIME:
-        res = filter(lambda x: is_prime(x), numbers)
+        res = filter(is_prime, numbers)
 
     return list(res)
