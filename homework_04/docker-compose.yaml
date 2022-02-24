@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  pg:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=homework_04_db
+    ports:
+      - "5432:5432"
+    #volumes:
+    #  - pg-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+
+volumes:
+  pg-data:
