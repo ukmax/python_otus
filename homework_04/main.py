@@ -17,7 +17,7 @@ import asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from homework_04.jsonplaceholder_requests import fetch_users_data, fetch_posts_data
-from homework_04.models import User, Post, create_schemas, async_session
+from homework_04.models import User, Post, create_schemas, Session
 
 
 async def create_users(session: AsyncSession, users_list):
@@ -50,7 +50,7 @@ async def async_main():
         fetch_users_data(),
         fetch_posts_data(),
     )
-    async with async_session() as session:
+    async with Session() as session:
         await create_users(session, users_data)
         await create_posts(session, posts_data)
 

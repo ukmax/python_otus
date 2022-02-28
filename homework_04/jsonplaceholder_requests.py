@@ -11,7 +11,7 @@ POSTS_DATA_URL = "https://jsonplaceholder.typicode.com/posts"
 
 
 async def fetch_json(session: ClientSession, url: str):
-    async with session.get(url) as response:
+    async with session.get(url, ssl=False) as response:
         response_json = await response.json()
         return response_json
 

@@ -8,10 +8,9 @@
 создайте связи relationship между моделями: User.posts и Post.user
 """
 import asyncio
-import asyncpg
 import os
 
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, create_engine
+from sqlalchemy import Column, Integer, String, Text, ForeignKey
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 
@@ -22,7 +21,7 @@ Session = None
 
 engine = create_async_engine(PG_CONN_URI, echo=True)
 Base = declarative_base(bind=engine)
-async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+Session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 
 class User(Base):
@@ -52,11 +51,7 @@ class User(Base):
         server_default="",
     )
 
-    post = relationship("Post", back_populates="user")
-
-
-
-
+    posts = relationship("Post", back_populates="user")
 
 
 class Post(Base):
@@ -88,8 +83,7 @@ class Post(Base):
         server_default="",
     )
 
-    user = relationship("User", back_populates="post")
-
+    user = relationship("User", back_populates="posts")
 
 
 async def create_schemas():
