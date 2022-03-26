@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div>
+  <h1>Мой словарь</h1>
+  <form method="post">
+      <input
+        type="text"
+        id="input-english-word-id"
+        name="english-word"
+        placeholder="english"
+        required
+      >
+    <input
+        type="text"
+        id="input-russian-word-id"
+        placeholder="russian"
+        name="russian-word"
+        required
+      >
+      <input type="submit" value="Добавить слово">
+    </form>
+  </div>
+  <div>
+  {% if products %}
+    <ul>
+      {% for (product_id, product_name) in products %}
+        <li>{{ product_id }} - {{ product_name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h3>No products yet.</h3>
+  {% endif %}
+</div>
+{% endblock %}
