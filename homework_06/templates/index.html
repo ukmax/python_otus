@@ -2,7 +2,7 @@
 {% block body %}
   <div>
   <h1>Мой словарь</h1>
-  <form method="post">
+  <form method="post" class="my-5">
       <input
         type="text"
         id="input-english-word-id"
@@ -21,14 +21,14 @@
     </form>
   </div>
   <div>
-  {% if products %}
+  {% if words %}
     <ul>
-      {% for (product_id, product_name) in products %}
-        <li>{{ product_id }} - {{ product_name }}</li>
+      {% for word in words %}
+        <li>{{ word.eng_word}} - {{ word.rus_word }}</li>
       {% endfor %}
     </ul>
   {% else %}
-    <h3>No products yet.</h3>
+    <h3>Пока нет записей</h3>
   {% endif %}
 </div>
 {% endblock %}
